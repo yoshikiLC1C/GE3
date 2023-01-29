@@ -16,7 +16,7 @@ LRESULT WinApp::WindowProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam) {
     return DefWindowProc(hwnd, msg, wparam, lparam);
 }
 
-void WinApp::Intialize() {
+void WinApp::Initialize() {
 
     //WindowsAPI初期化処理
 

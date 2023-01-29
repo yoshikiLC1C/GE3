@@ -9,7 +9,7 @@ public: // 静的メンバ変数
 
 public: // メンバ関数
 
-	void Intialize();
+	void Initialize();
 
 	// 終了
 	void Finalize();
