@@ -38,6 +38,18 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE, LPSTR, int) {
     Sprite* sprite = nullptr;
     sprite = new Sprite();
     sprite->Initialize(spriteCommon, 0);
+    Sprite* sprite1 = nullptr;
+    sprite1 = new Sprite();
+    sprite1->Initialize(spriteCommon, 1);
+
+    DirectX::XMFLOAT2 pos = sprite->GetPosition();
+    DirectX::XMFLOAT2 pos1 = sprite1->GetPosition();
+    DirectX::XMFLOAT2 size = sprite->GetSize();
+    DirectX::XMFLOAT2 size1 = sprite1->GetSize();
+    pos = { 0,360 };
+    pos1 = { 0,0 };
+    size = { 100,100 };
+    size1 = { 200,100 };
 
 #pragma endregion
 
@@ -56,13 +68,17 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE, LPSTR, int) {
 #pragma endregion
 
 #pragma region 最初のシーン更新
-        DirectX::XMFLOAT2 pos = sprite->GetPosition();
-        DirectX::XMFLOAT2 size = sprite->GetSize();
-        size.y += 0.1f;
+        
+        
+        pos.x += 3;
 
         sprite->SetPosition(pos);
+        sprite1->SetPosition(pos1);
         sprite->SetSize(size);
+        sprite1->SetSize(size1);
+
         sprite->Update();
+        sprite1->Update();
 
 
 #pragma endregion
@@ -73,6 +89,7 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE, LPSTR, int) {
 #pragma region 最初のシーン描画
         spriteCommon->PreDraw();
         sprite->Draw();
+        sprite1->Draw();
         spriteCommon->PostDraw();
 
 #pragma endregion
