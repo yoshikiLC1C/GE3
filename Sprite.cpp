@@ -39,7 +39,7 @@ void Sprite::Initialize(SpriteCommon* _spriteCommon, uint32_t textureIndex) {
         float left = (0.0f - anchorPoint.x) * size.x;
         float right = (1.0f - anchorPoint.x) * size.x;
         float top = (0.0f - anchorPoint.y) * size.y;
-        float bottom = (2.0f - anchorPoint.y) * size.y;
+        float bottom = (1.0f - anchorPoint.y) * size.y;
 
         if (IsFlipX) {
             left = -left;
@@ -74,7 +74,6 @@ void Sprite::Initialize(SpriteCommon* _spriteCommon, uint32_t textureIndex) {
     resDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
 
     // 頂点バッファの生成
-    ID3D12Resource* vertBuff;
     result = spriteCommon->GetDirectXCommon()->GetDevice()->CreateCommittedResource(
         &heapProp, // ヒープ設定
         D3D12_HEAP_FLAG_NONE,
@@ -216,7 +215,7 @@ void Sprite::Update() {
         float left = (0.0f - anchorPoint.x) * size.x;
         float right = (1.0f - anchorPoint.x) * size.x;
         float top = (0.0f - anchorPoint.y) * size.y;
-        float bottom = (2.0f - anchorPoint.y) * size.y;
+        float bottom = (1.0f - anchorPoint.y) * size.y;
 
         if (IsFlipX) {
             left = -left;
@@ -288,7 +287,7 @@ void Sprite::Draw() {
     spriteCommon->GetDirectXCommon()->GetCommandList()->SetGraphicsRootConstantBufferView(2, constBufferTransform->GetGPUVirtualAddress());
 
     // 描画コマンド
-    spriteCommon->GetDirectXCommon()->GetCommandList()->DrawInstanced(3, 1, 0, 0);
+    spriteCommon->GetDirectXCommon()->GetCommandList()->DrawInstanced(4, 1, 0, 0);
 }
 
 void Sprite::AdjustTextureSize(){

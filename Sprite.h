@@ -80,16 +80,17 @@ private:
 	void AdjustTextureSize();
 
 private:
+	SpriteCommon* spriteCommon = nullptr; 
+
+	// テクスチャ番号
+	uint32_t textureIndex = 0;
 
 	//スプライト情報
 	DirectX::XMFLOAT4 color = { 1,1,1,1 };
 	DirectX::XMFLOAT2 size = { 100.0f,100.0f };
 	DirectX::XMFLOAT2 anchorPoint = { 0.0f,0.0f };
 
-	SpriteCommon* spriteCommon = nullptr; 
-
-	// テクスチャ番号
-	uint32_t textureIndex = 0;
+	
 
 	float rotationZ = 0.0f;
 	DirectX::XMFLOAT2 position = { 0.0f,0.0f };
@@ -105,7 +106,7 @@ private:
 	Vertex vertices[4];
 
 	
-	Microsoft::WRL::ComPtr<ID3D12Resource> vertBuff;
+	Microsoft::WRL::ComPtr<ID3D12Resource>vertBuff;
 	// 頂点バッファビューの作成
 	D3D12_VERTEX_BUFFER_VIEW vbView{};
 

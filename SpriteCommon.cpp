@@ -193,7 +193,7 @@ void SpriteCommon::Initialize(DirectXCommon* _dxCommon) {
 
 void SpriteCommon::PreDraw() {
     // プリミティブ形状の設定コマンド
-    dxCommon->GetCommandList()->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST); // 三角形リスト
+    dxCommon->GetCommandList()->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP); // 三角形リスト
     // パイプラインステートとルートシグネチャの設定コマンド
     dxCommon->GetCommandList()->SetPipelineState(pipelineState.Get());
     dxCommon->GetCommandList()->SetGraphicsRootSignature(rootSignature.Get());
@@ -282,7 +282,7 @@ void SpriteCommon::LoadTexture(uint32_t index, const std::string& fileName){
     D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc{};
     srvDesc.Format = textureResourceDesc.Format;
     srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
-    srvDesc.ViewDimension - D3D12_SRV_DIMENSION_TEXTURE2D;
+    srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
     srvDesc.Texture2D.MipLevels = textureResourceDesc.MipLevels;
 
 
