@@ -1,15 +1,9 @@
-//#include "Sprite.hlsli"
+#include "Sprite.hlsli"
 
-float4 main(float4 pos : POSITION) : SV_POSITION
+VSOutput main(float4 pos : POSITION, float2 uv : TEXCOORD)
 {
-    return pos;
+    VSOutput output;
+    output.svpos = mul(mat, pos); // 座標に行列を乗算
+    output.uv = uv;
+    return output;
 }
-
-//VSOutput main(float4 pos : POSITION, float3 normal : NORMAL, float2 uv : TEXCOORD)
-//{
-//    VSOutput output;
-//    output.svpos = mul(mat, pos); // 座標に行列を乗算
-//    output.normal = normal;
-//    output.uv = uv;
-//    return output;
-//}

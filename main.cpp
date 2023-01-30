@@ -26,6 +26,10 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE, LPSTR, int) {
     SpriteCommon* spriteCommon = nullptr;
     spriteCommon = new SpriteCommon();
     spriteCommon->Initialize(dxCommon);
+    spriteCommon->LoadTexture(0, "texture.png");
+    spriteCommon->LoadTexture(1, "reimu.png");
+
+
 
 #pragma endregion
 
@@ -33,7 +37,7 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE, LPSTR, int) {
     
     Sprite* sprite = nullptr;
     sprite = new Sprite();
-    sprite->Initialize(spriteCommon);
+    sprite->Initialize(spriteCommon, 0);
 
 #pragma endregion
 
@@ -53,6 +57,12 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE, LPSTR, int) {
 
 #pragma region 最初のシーン更新
 
+        DirectX::XMFLOAT2 size = sprite->GetSize();
+        size.y += 0.1f;
+        sprite->SetSize(size);
+        sprite->Update();
+
+
 #pragma endregion
 
         // 描画前処理
@@ -61,6 +71,7 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE, LPSTR, int) {
 #pragma region 最初のシーン描画
         spriteCommon->PreDraw();
         sprite->Draw();
+        spriteCommon->PostDraw();
 
 #pragma endregion
 
